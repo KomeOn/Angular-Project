@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>View Page</title>
+        <meta name="description" content="This page contains all the users and their respective posts.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+        <!-- AngularJS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+        <!-- JQuery -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+        <!-- User Defined Js scripts-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+        <script src="/Angular Porject/Code/controllers/app.js"></script>
+        <script src="/Angular Porject/Code/controllers/users.js"></script>
+        <script src="/Angular Porject/Code/controllers/posts.js"></script>
+        <!-- User Defined CSS sheets -->
+        <link rel="stylesheet" href="/Angular Porject/Code/stylesheets/custom-1.css">
+    </head>
+    <body data-ng-app="view">
+        <div class="container mb-3 p-4">
+            <div class="jumbortron">
+                <h1 class="display-4">Some Radnom Company Name</h1>
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <hr class="my-4">
+                <div class="md-form mx-auto w-50">
+                    <input class="form-control" type="text" placeholder="Search" name="user">
+                </div>
+            </div>
+        </div>
+        <div class="conainer">
+            <div class="row p-4">
+                <div class="col-3" data-ng-controller="users">
+                    <div data-ng-repeat="person in persons">
+                        <div class="card mb-3" ng-click="User_Clicked(person.name, person.id)">
+                            <div class="card-header">
+                                <p class="mb-0">{{ person.name }}</p>
+                            </div>
+                            <div class="card-body">
+                                <img class="card-img-top h-25 my-2 mr-2" src="/Angular Porject/Sources/img_avatar.png" alt="Card image">
+                                <p class="mb-1"><small><span class="font-weight-bold">Name: </span>{{ person.username }}</small></p>
+                                <p><small><span class="font-weight-bold">Email: </span>{{ person.email }}</small></p>
+                                <a href="#" class="stretched-link" data-toggle="modal" data-target="#infobar">
+                                </a> 
+                            </div>
+                        </div>    
+                        <div class="modal fade" id="infobar" tabindex="-1" role="dialog" aria-labelledby="infobarLabel" aria-hidden="true" data-ng-model="user">
+                            <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title font-weight-bolder" id="infobarLabel">{{ user[0].name }}</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row mb-5">
+                                        <div class="col-2 px-4">
+                                            <img class="card-img-top h-100 my-2 mr-2 rounded" src="/Angular Porject/Sources/img_avatar.png" alt="Card image">
+                                        </div>
+                                        <div class="col-10 px-4">
+                                            <p class="mb-1"><small><span class="font-weight-bold">Name: </span>{{ user[0].name }}</small></p>
+                                            <p class="mb-1"><small><span class="font-weight-bold">Username: </span>{{ user[0].username }}</small></p>
+                                            <p class="mb-1"><small><span class="font-weight-bold">Email: </span>{{ user[0].email }}</small></p>
+                                            <p class="mb-1"><small><span class="font-weight-bold">Address: </span>
+                                                {{ user[0].address.street }}, 
+                                                {{ user[0].address.suite }},
+                                                {{ user[0].address.city }},
+                                                {{ user[0].address.zipcode }}</small>
+                                            </p>
+                                            <p class="mb-1"><small><span class="font-weight-bold">Phone: </span>{{ user[0].phone }}</small></p>
+                                            <p class="mb-1"><small><span class="font-weight-bold">Website: </span>{{ user[0].website }}</small></p>
+                                            <p class="mb-1"><small><span class="font-weight-bold">Company Name: </span> {{ user[0].company.name }}</small></p>                                            
+                                        </div>
+                                    </div>
+                                    <div data-ng-repeat="update in updates" class="py-3">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <p class="text-center font-weight-bolder p-0 m-0">{{ update.title }}</p>
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="font-weight-light font-italic">{{ update.body }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Close</button>
+                                    <div class="md-form ml-auto w-50">
+                                        <input class="form-control" type="text" placeholder="Search" name="user">
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9" data-ng-controller="posts">
+                    <div class="card-columns">
+                        <div data-ng-repeat="blog in blogs">
+                            <div class="card" ng-click="Post_Clicked(blog.name, blog.id, blog.userId)">
+                                <div class="card-body">
+                                    <p>{{ blog.title }}</p>
+                                    <a target-blank href="#" class="stretched-link"  data-toggle="modal" data-target="#postbar">
+                                    </a> 
+                                </div>
+                                <div class="card-footer">
+                                    <p class="text-right mb-0 pb-0"><small>{{ blog.name }}</small></p>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="postbar" tabindex="-1" role="dialog" aria-labelledby="postbarLabel" aria-hidden="true" data-ng-model="stats">
+                                <div class="modal-dialog modal-md modal-dialog-scrollable modal-dialog-centered">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <p class="modal-title font-weight-bold" id="postbarLabel">{{ stats[0].title }}</p>
+                                    </div>
+                                    <div class="modal-body py-3" data-ng-model="by">
+                                        <p class="font-weight-light font-italic">{{ stats[0].body }}</p>
+                                        <br>
+                                        <p class="text-right font-itlaic">-{{ by }}</p>
+                                    </div>  
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </body>
+</html>
